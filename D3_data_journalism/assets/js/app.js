@@ -1,8 +1,4 @@
 // @TODO: YOUR CODE HERE!
-// SVG wrapper dimensions are determined by the current width and height of the browser window.
-
-// var svgWidth = window.innerWidth  //850;
-// var svgHeight = window.innerHeight  //500;
 
 // This is the dimension of the plot container: width and height 
 const svgWidth = window.innerWidth,
@@ -33,7 +29,7 @@ var chosenYAxis = "healthcare";
 
 // Function to update x-scale selection on x-axis label
 function xScale(stateData, chosenXAxis) {
-  // create scales
+  
   var xLinearScale = d3.scaleLinear()
     .domain([d3.min(stateData, d => d[chosenXAxis]) * 0.9645,
       d3.max(stateData, d => d[chosenXAxis]) * 1.1
@@ -45,7 +41,7 @@ function xScale(stateData, chosenXAxis) {
 
 // Function to update y-scale selection on y-axis label
 function yScale(stateData, chosenYAxis) {
-  // create scales
+  
   var yLinearScale = d3.scaleLinear()
     .domain([d3.min(stateData, d =>d[chosenYAxis]) * 0.7,
       d3.max(stateData, d => d[chosenYAxis]) * 1.1
@@ -158,20 +154,20 @@ d3.csv("assets/data/data.csv").then(function(stateData, err) {
   var bottomAxis = d3.axisBottom(xLinearScale);
   var leftAxis = d3.axisLeft(yLinearScale);
 
-  // append x axis
+  // x-axis
   var xAxis = chartGroup.append("g")
     .classed("x-axis", true)
     .attr("transform", `translate(0, ${height})`)
     .call(bottomAxis);
 
-  // append y axis
+  // y-axis
   var yAxis = chartGroup.append("g")
     .classed("y-axis", true)
     .call(leftAxis);
 
   var circleTextGroup = chartGroup.append("g");
 
-  // append initial circles
+ 
   var circlesGroup = circleTextGroup.selectAll("circle")
     .data(stateData)
     .enter()
